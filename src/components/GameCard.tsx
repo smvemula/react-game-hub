@@ -3,6 +3,7 @@ import { Game } from "../hooks/useGames";
 import PlatformIcon from "./PlatformIcon";
 import CriticScore from "./CriticScore";
 import getCroppedUrl from "../services/image-url";
+import GameCardContainer from "./GameCardContainer";
 
 interface Props {
   game: Game;
@@ -10,18 +11,20 @@ interface Props {
 
 const GameCard = ({ game }: Props) => {
   return (
-    <Card borderRadius={10} overflow={"hidden"} width={"300px"}>
-      <Image src={getCroppedUrl(game.background_image)} />
-      <CardBody>
-        <Heading fontSize={"xl"}>{game.name}</Heading>
-        <HStack justifyContent="space-between">
-          <PlatformIcon
-            platforms={game.parent_platforms.map((p) => p.platform)}
-          ></PlatformIcon>
-          <CriticScore score={game.metacritic}></CriticScore>
-        </HStack>
-      </CardBody>
-    </Card>
+    <GameCardContainer>
+      <Card>
+        <Image src={getCroppedUrl(game.background_image)} />
+        <CardBody>
+          <Heading fontSize={"xl"}>{game.name}</Heading>
+          <HStack justifyContent="space-between">
+            <PlatformIcon
+              platforms={game.parent_platforms.map((p) => p.platform)}
+            ></PlatformIcon>
+            <CriticScore score={game.metacritic}></CriticScore>
+          </HStack>
+        </CardBody>
+      </Card>
+    </GameCardContainer>
   );
 };
 
