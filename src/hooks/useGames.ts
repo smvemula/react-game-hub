@@ -15,6 +15,6 @@ export interface Game {
     metacritic: number
 }
 
-const useGames = (gameQuery: GameQuery) => useData<Game>("/games", { params: { genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id, ordering: gameQuery.sort}}, [gameQuery]);
+const useGames = (gameQuery: GameQuery) => useData<Game>("/games", { params: { genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id, ordering: gameQuery.sort, search: gameQuery.search}}, [gameQuery]);
 
 export default useGames;
