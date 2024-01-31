@@ -9,6 +9,7 @@ import {
 import { BiChevronDown } from "react-icons/bi";
 import usePlatforms from "../hooks/usePlatforms";
 import { Platform } from "../hooks/useGames";
+import usePlatform from "../hooks/usePlatform";
 
 interface Props {
   onSelected: (platform: Platform) => void;
@@ -17,8 +18,7 @@ interface Props {
 
 const PlatformSelector = ({ selectedPlatformId, onSelected }: Props) => {
   const { data, isLoading, error } = usePlatforms();
-  const platform = data?.results.find((p) => p.id === selectedPlatformId);
-
+  const platform = usePlatform(selectedPlatformId);
   if (error) return null;
 
   if (isLoading) return <Spinner />;
