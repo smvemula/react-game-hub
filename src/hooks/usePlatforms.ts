@@ -9,7 +9,7 @@ const usePlatforms = () => useQuery({
     queryKey: ["platforms"],
     queryFn: apiClient.get,
     staleTime: 24 * 60 * 60 * 1000, // 24 hours
-    initialData: platforms
+    //initialData: platforms
 })
 
 //({data: platforms, isLoading: false, error: null}) //useData<Platform>("/platforms/lists/parents");

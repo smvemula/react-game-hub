@@ -12,11 +12,12 @@ import { Platform } from "../hooks/useGames";
 
 interface Props {
   onSelected: (platform: Platform) => void;
-  selectedPlatform: Platform | null;
+  selectedPlatformId?: number;
 }
 
-const PlatformSelector = ({ selectedPlatform, onSelected }: Props) => {
+const PlatformSelector = ({ selectedPlatformId, onSelected }: Props) => {
   const { data, isLoading, error } = usePlatforms();
+  const platform = data?.results.find((p) => p.id === selectedPlatformId);
 
   if (error) return null;
 
@@ -25,10 +26,10 @@ const PlatformSelector = ({ selectedPlatform, onSelected }: Props) => {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BiChevronDown />}>
-        {selectedPlatform?.name || "Platform"}
+        {platform?.name || "Platform"}
       </MenuButton>
       <MenuList>
-        {data.map((platform) => (
+        {data?.results.map((platform) => (
           <MenuItem
             key={platform.id}
             onClick={() => {
